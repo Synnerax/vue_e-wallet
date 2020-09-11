@@ -1,13 +1,55 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <main id="app">
+    
+    <router-view 
+    v-on:AddCard="addCard" 
+    v-on:updatedView="updateView" 
+    v-on:removeCard="remove" 
+    :stack="cards"
+    />
+  </main>
 </template>
 
+<script>
+
+
+export default {
+  name: 'App',
+  data(){
+    return {
+      cards: [],
+      
+    }
+  },
+  methods: {
+    addCard(e){
+    this.cards.push(e)
+    localStorage.setItem('cards', JSON.stringify(this.cards))
+    },
+    updateView(e){
+      this.cardView = []
+      this.cardView.push(e)
+    },
+    remove(e){
+      let localStack = JSON.parse(localStorage.getItem('cards'))
+      localStack.splice(e, 1)
+
+      localStorage.setItem('cards', JSON.stringify(localStack))
+      
+      this.cards.splice(e, 1)
+      
+      console.log(localStack, e)
+    }
+    
+  },
+  mounted() {
+    if (localStorage.cards) {
+      this.cards = JSON.parse(localStorage.cards);
+    }
+  },
+
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
