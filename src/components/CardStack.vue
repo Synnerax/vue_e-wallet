@@ -46,6 +46,7 @@ export default {
         .stack-wrapper {
             height: 3rem;
             transition: height  1s ease;
+            cursor: pointer;
             
             &:last-child{
                 margin-bottom: 12rem;

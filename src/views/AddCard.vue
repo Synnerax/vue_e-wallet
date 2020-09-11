@@ -31,6 +31,7 @@ export default {
         SingleCard,
         CardForm
       },
+      props: ['stack'],
       methods: {
         cardView(e){
         this.cardInfo = e
