@@ -92,6 +92,7 @@ section {
   align-items: center;
 
   .add-card {
+    
     width: 22rem;
     height: 5rem;
     
